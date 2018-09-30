@@ -1,3 +1,7 @@
+import depositos.*
+import formacion.*
+import vagones.*
+
 class Locomotora{
 	method peso() = 1000
 	method arrastre() = 12000 // ARRASTRE UTIL = puedeArrastrar - peso = 11000

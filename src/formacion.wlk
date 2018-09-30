@@ -45,12 +45,7 @@ class Formacion {
 	}
 
 	method vagonMasPesado() {
+		//return vagonesCarga.max { vagon => vagon.peso() }
 		return vagones.max { vagon => vagon.peso() }
 	}
-
-
-
-
-
-
 }

@@ -1,3 +1,7 @@
+import depositos.*
+import formacion.*
+import locomotoras.*
+
 class VagonCarga {
 	var property cargaMaxima = 2000
 	method peso() = cargaMaxima + 160

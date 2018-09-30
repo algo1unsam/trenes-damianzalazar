@@ -3,12 +3,21 @@ import formacion.*
 import locomotoras.*
 import vagones.*
 
-test "Formacion1 puede transportar 0 pasajeros" {
+describe "Test Administradora Ferroviaria"{
 	var locomotora1 = new Locomotora()
+	var locomotora2 = new Locomotora()
 	var vagonCarga1 = new VagonCarga()
 	var vagonCarga2 = new VagonCarga()
 	var vagonCarga3 = new VagonCarga()
+	var vagonPasajeros1 = new VagonPasajero()
+	var vagonPasajeros2 = new VagonPasajero()
+	var vagonPasajeros3 = new VagonPasajero()
 	var formacion1 = new Formacion()
+	var formacion2 = new Formacion()
+	var formacion3 = new Formacion()
+	var deposito1 = new Deposito()
+
+test "Formacion1 puede transportar 0 pasajeros" {
 	formacion1.agregarLocomotora(locomotora1)
 	formacion1.agregarVagonCarga(vagonCarga1)
 	formacion1.agregarVagonCarga(vagonCarga2)
@@ -17,11 +26,6 @@ test "Formacion1 puede transportar 0 pasajeros" {
 }
 
 test "Formacion1 puede transportar 240 pasajeros"{
-	var locomotora1 = new Locomotora()
-	var vagonPasajeros1 = new VagonPasajero()
-	var vagonPasajeros2 = new VagonPasajero()
-	var vagonPasajeros3 = new VagonPasajero()
-	var formacion1 = new Formacion()
 	formacion1.agregarLocomotora(locomotora1)
 	formacion1.agregarVagonPasajeros(vagonPasajeros1)
 	formacion1.agregarVagonPasajeros(vagonPasajeros2)
@@ -30,11 +34,6 @@ test "Formacion1 puede transportar 240 pasajeros"{
 }
 
 test "Hay 3 vagones de carga livianos en la formacion2" {
-	var locomotora1 = new Locomotora()
-	var vagonCarga1 = new VagonCarga()
-	var vagonCarga2 = new VagonCarga()
-	var vagonCarga3 = new VagonCarga()
-	var formacion2 = new Formacion()
 	formacion2.agregarLocomotora(locomotora1)
 	formacion2.agregarVagonCarga(vagonCarga1)
 	formacion2.agregarVagonCarga(vagonCarga2)
@@ -43,11 +42,6 @@ test "Hay 3 vagones de carga livianos en la formacion2" {
 }
 
 test "Hay 3 vagones de pasajeros que no son livianos en la formacion3" {
-	var locomotora1 = new Locomotora()
-	var vagonPasajeros1 = new VagonPasajero()
-	var vagonPasajeros2 = new VagonPasajero()
-	var vagonPasajeros3 = new VagonPasajero()
-	var formacion3 = new Formacion()
 	formacion3.agregarLocomotora(locomotora1)
 	formacion3.agregarVagonPasajeros(vagonPasajeros1)
 	formacion3.agregarVagonPasajeros(vagonPasajeros2)
@@ -56,12 +50,7 @@ test "Hay 3 vagones de pasajeros que no son livianos en la formacion3" {
 }
 
 test "En total hay 3 vagones tanto de carga como de pasajeros que no son livianos en la formacion2" {
-	var locomotora1 = new Locomotora()
-	var vagonPasajeros1 = new VagonPasajero()
-	var vagonPasajeros2 = new VagonPasajero()
-	var vagonCarga1 = new VagonCarga()
 	vagonCarga1.cargaMaxima(2500)
-	var formacion2 = new Formacion()
 	formacion2.agregarLocomotora(locomotora1)
 	formacion2.agregarVagonPasajeros(vagonPasajeros1)
 	formacion2.agregarVagonPasajeros(vagonPasajeros2)
@@ -70,10 +59,6 @@ test "En total hay 3 vagones tanto de carga como de pasajeros que no son liviano
 }
 
 test "La velocidad maxima de una formacion es 80"{
-	var locomotora1 = new Locomotora()
-	var locomotora2 = new Locomotora()
-	var vagonPasajeros1 = new VagonPasajero()
-	var formacion1 = new Formacion()
 	formacion1.agregarLocomotora(locomotora1)
 	formacion1.agregarLocomotora(locomotora2)
 	formacion1.agregarVagonPasajeros(vagonPasajeros1)
@@ -81,10 +66,6 @@ test "La velocidad maxima de una formacion es 80"{
 }
 
 test "La formacion1 es eficiente"{
-	var locomotora1 = new Locomotora()
-	var locomotora2 = new Locomotora()
-	var vagonPasajeros1 = new VagonPasajero()
-	var formacion1 = new Formacion()
 	formacion1.agregarLocomotora(locomotora1)
 	formacion1.agregarLocomotora(locomotora2)
 	formacion1.agregarVagonPasajeros(vagonPasajeros1)
@@ -92,11 +73,6 @@ test "La formacion1 es eficiente"{
 }
 
 test "La formacion1 puede moverse" {
-	var locomotora1 = new Locomotora()
-	var locomotora2 = new Locomotora()
-	var vagonCarga1 = new VagonCarga()
-	var vagonPasajeros1 = new VagonPasajero()
-	var formacion1 = new Formacion()
 	formacion1.agregarLocomotora(locomotora1)
 	formacion1.agregarLocomotora(locomotora2)
 	formacion1.agregarVagonCarga(vagonCarga1)
@@ -105,13 +81,7 @@ test "La formacion1 puede moverse" {
 }
 
 test "La formacion1 no puede moverse" {
-	var locomotora1 = new Locomotora()
-	var locomotora2 = new Locomotora()
-	var vagonCarga1 = new VagonCarga()
-	var vagonCarga2 = new VagonCarga()
-	var vagonCarga3 = new VagonCarga()
 	vagonCarga3.cargaMaxima(17521)
-	var formacion1 = new Formacion()
 	formacion1.agregarLocomotora(locomotora1)
 	formacion1.agregarLocomotora(locomotora2)
 	formacion1.agregarVagonCarga(vagonCarga1)
@@ -121,13 +91,7 @@ test "La formacion1 no puede moverse" {
 }
 
 test "El empuje faltante para que se pueda arrastrar es 1Kg" {
-	var locomotora1 = new Locomotora()
-	var locomotora2 = new Locomotora()
-	var vagonCarga1 = new VagonCarga()
-	var vagonCarga2 = new VagonCarga()
-	var vagonCarga3 = new VagonCarga()
 	vagonCarga3.cargaMaxima(17521)
-	var formacion1 = new Formacion()
 	formacion1.agregarLocomotora(locomotora1)
 	formacion1.agregarLocomotora(locomotora2)
 	formacion1.agregarVagonCarga(vagonCarga1)
@@ -136,21 +100,15 @@ test "El empuje faltante para que se pueda arrastrar es 1Kg" {
 	assert.equals(1, formacion1.empujeParaMoverse())
 }
 
-//test "En deposito1 hay 3 vagones pesados" {
-//	var vagonCarga1 = new VagonCarga()
-//	var vagonCarga2 = new VagonCarga()
-//	var vagonCarga3 = new VagonCarga()
-//	var formacion1 = new Formacion()
-//	var formacion2 = new Formacion()
-//	var formacion3 = new Formacion()
-//	var deposito1 = new Deposito()
-//	formacion1.agregarVagonCarga(vagonCarga1)
-//	formacion2.agregarVagonCarga(vagonCarga2)
-//	formacion3.agregarVagonCarga(vagonCarga3)
-//	deposito1.agregarFormacion(formacion1)
-//	deposito1.agregarFormacion(formacion2)
-//	deposito1.agregarFormacion(formacion3)
-//	deposito1.vagonesMasPesados()
-//	assert.equals(3, deposito1.vagonesPesados())
-//	
-//}
+test "En deposito1 hay 3 vagones pesados" {
+	formacion1.agregarVagonCarga(vagonCarga1)
+	formacion2.agregarVagonCarga(vagonCarga2)
+	formacion3.agregarVagonCarga(vagonCarga3)
+	deposito1.agregarFormacion(formacion1)
+	deposito1.agregarFormacion(formacion2)
+	deposito1.agregarFormacion(formacion3)
+	deposito1.vagonMasPesadoXformacion()
+	assert.equals(3, deposito1.cantVagonesMasPesadosXformacion())	
+}
+
+}
