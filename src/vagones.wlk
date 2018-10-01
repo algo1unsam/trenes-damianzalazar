@@ -14,4 +14,3 @@ class VagonPasajero {
 	method cantPasajeros() = if (ancho <= 2.5 ) largo * 8 else largo * 10
 	method peso() = self.cantPasajeros() * 80
 }
-///////////////////////////////////////////////////////////////////////////

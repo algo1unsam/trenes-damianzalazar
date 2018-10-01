@@ -107,8 +107,7 @@ test "En deposito1 hay 3 vagones pesados" {
 	deposito1.agregarFormacion(formacion1)
 	deposito1.agregarFormacion(formacion2)
 	deposito1.agregarFormacion(formacion3)
-	deposito1.vagonMasPesadoXformacion()
-	assert.equals(3, deposito1.cantVagonesMasPesadosXformacion())	
+	assert.equals(3, deposito1.vagonesMasPesadosXformacion().size())
 }
 
 }
