@@ -7,6 +7,10 @@ class Formacion {
 	var property vagones = []
 	var property vagonesCarga = []
 	var property vagonesPasajeros = []
+	const limiteVagonLiviano = 2500
+	const limiteCantVagonesYlocomotoras = 20
+	const limitePesoVagonesYlocomotoras = 10000
+	const eficiencia = 5
 	
 	method agregarLocomotora(locomotora) { locomotoras.add(locomotora) }
 	method agregarVagonCarga(vagon) { 
@@ -22,7 +26,7 @@ class Formacion {
 		return vagonesPasajeros.sum { vagon => vagon.cantPasajeros()}
 	}
 	
-	method vagonLiviano(vagon) = vagon.peso() < 2500
+	method vagonLiviano(vagon) = vagon.peso() < limiteVagonLiviano
 
 	method cantVagonesLivianos() {
 		return vagones.filter {vagon => self.vagonLiviano(vagon) }.size()	   
@@ -32,14 +36,14 @@ class Formacion {
 		locomotoras.min{ locomotora => locomotora.velocidad() }.velocidad()
 	
 	method eficiente() = 
-		locomotoras.all { locomotora => locomotora.arrastre() >= locomotora.peso() * 5 }
+		locomotoras.all { locomotora => locomotora.arrastre() >= locomotora.peso() * eficiencia }
 	
 	method puedeMoverse() =
 		locomotoras.sum { locomotora => locomotora.arrastreUtil() } >=
 		vagones.sum { vagon => vagon.peso() }
 
 	method empujeParaMoverse(){
-		if (self.puedeMoverse()) 0
+		if (self.puedeMoverse()) return 0
 		return vagones.sum { vagon => vagon.peso() } -
 			   locomotoras.sum { locomotora => locomotora.arrastreUtil() }
 	}
@@ -55,5 +59,6 @@ class Formacion {
 			   vagones.sum { vagon => vagon.peso() }
 	}
 	
-	method esCompleja() = self.cantVagonesYlocomotoras() > 20 || self.pesoVagonesYlocomotoras() > 10000
+	method esCompleja() = self.cantVagonesYlocomotoras() > limiteCantVagonesYlocomotoras || 
+						  self.pesoVagonesYlocomotoras() > limitePesoVagonesYlocomotoras
 }

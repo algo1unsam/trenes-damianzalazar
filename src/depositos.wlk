@@ -13,20 +13,27 @@ class Deposito {
 		return formaciones.map { formacion => formacion.vagonMasPesado() }
 	}
 	
-	method necesitoConductorExperimentado() = formaciones.any { formacion => formacion.esCompleja() }
+	method necesitoConductorExperimentado() {
+		return formaciones.any { formacion => formacion.esCompleja() }	 
+	}
 	
 	method formacionesPuedenMoverse() {
-		formaciones.all { formacion => formacion.puedenMoverse() }
+		return formaciones.all { formacion => formacion.puedeMoverse() }
+	}
+	
+	method formacionesQueNoPuedenMoverse() {
+		return formaciones.filter { formacion => !formacion.puedeMoverse()}
 	}
 	
 	method agregarLocomotorasParaMoverFormacion() {
 		locomotoras.forEach { 
 		locomotora =>
 			formaciones.forEach { 
-			formacion =>  if ( locomotora.arrastreUtil() >=  formacion.empujeParaMoverse() ) 
-						  formacion.agregarLocomotora(locomotora)	
+			formacion =>  if ( !formacion.puedeMoverse() ) { //Valida que la formacion no pueda moverse es decir: empuje > 0
+						  	if ( locomotora.arrastreUtil() >=  formacion.empujeParaMoverse() )
+						 	 	formacion.agregarLocomotora(locomotora)
+						  }
 			}
 		}
 	}
-	
 }

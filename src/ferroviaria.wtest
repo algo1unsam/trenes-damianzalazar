@@ -167,7 +167,7 @@ test "En deposito1 la formacion1 no puede moverse" {
 	assert.equals(formacion1 == deposito1.formacionesQueNoPuedenMoverse())
 }
 
-test "En deposito1 agregar locomotora1 a la formacion1 para que puede moverse" {
+test "En deposito1 se agrega locomotora1 a la formacion1 para que pueda moverse" {
 	vagonCarga3.cargaMaxima(17521)
 	formacion1.agregarLocomotora(locomotora1)
 	formacion1.agregarLocomotora(locomotora2)
@@ -179,5 +179,17 @@ test "En deposito1 agregar locomotora1 a la formacion1 para que puede moverse" {
 	deposito1.agregarLocomotoraSuelta(locomotora3)
 	deposito1.agregarLocomotorasParaMoverFormacion()
 	assert.equals([locomotora1, locomotora2, locomotora3], formacion1.locomotoras())
+}
+
+test "En deposito1 no se agrega locomotora a la formacion1 porque puede moverse" {
+	formacion1.agregarLocomotora(locomotora1)
+	formacion1.agregarLocomotora(locomotora2)
+	formacion1.agregarVagonCarga(vagonCarga1)
+	formacion1.agregarVagonPasajeros(vagonPasajeros1)
+	deposito1.agregarFormacion(formacion1)
+	var locomotora3 = new Locomotora()
+	deposito1.agregarLocomotoraSuelta(locomotora3)
+	deposito1.agregarLocomotorasParaMoverFormacion()
+	assert.equals( [ locomotora1, locomotora2 ] , formacion1.locomotoras() )
 }
 }
