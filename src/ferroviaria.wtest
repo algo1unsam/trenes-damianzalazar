@@ -110,4 +110,74 @@ test "En deposito1 hay 3 vagones pesados" {
 	assert.equals(3, deposito1.vagonesMasPesadosXformacion().size())
 }
 
+test "Formacion1 es Compleja porque la cantidad de locomotoras y vagones superan las 20 unidades"{
+	var locomotora3 = new Locomotora()
+	var locomotora4 = new Locomotora()
+	var locomotora5 = new Locomotora()
+	var locomotora6 = new Locomotora()
+	var vagonCarga4 = new VagonCarga()
+	var vagonCarga5 = new VagonCarga()
+	var vagonCarga6 = new VagonCarga()
+	var vagonPasajeros4 = new VagonPasajero()
+	var vagonPasajeros5 = new VagonPasajero()
+	var vagonPasajeros6 = new VagonPasajero()
+	var vagonPasajeros7 = new VagonPasajero()
+	var vagonPasajeros8 = new VagonPasajero()
+	var vagonPasajeros9 = new VagonPasajero()
+	formacion1.agregarLocomotora(locomotora1)
+	formacion1.agregarLocomotora(locomotora2)
+	formacion1.agregarLocomotora(locomotora3)
+	formacion1.agregarLocomotora(locomotora4)
+	formacion1.agregarLocomotora(locomotora5)
+	formacion1.agregarLocomotora(locomotora6)
+	formacion1.agregarVagonCarga(vagonCarga1)
+	formacion1.agregarVagonCarga(vagonCarga2)
+	formacion1.agregarVagonCarga(vagonCarga3)
+	formacion1.agregarVagonCarga(vagonCarga4)
+	formacion1.agregarVagonCarga(vagonCarga5)
+	formacion1.agregarVagonCarga(vagonCarga6)
+	formacion1.agregarVagonPasajeros(vagonPasajeros1)
+	formacion1.agregarVagonPasajeros(vagonPasajeros2)
+	formacion1.agregarVagonPasajeros(vagonPasajeros3)
+	formacion1.agregarVagonPasajeros(vagonPasajeros4)
+	formacion1.agregarVagonPasajeros(vagonPasajeros5)
+	formacion1.agregarVagonPasajeros(vagonPasajeros6)
+	formacion1.agregarVagonPasajeros(vagonPasajeros7)
+	formacion1.agregarVagonPasajeros(vagonPasajeros8)
+	formacion1.agregarVagonPasajeros(vagonPasajeros9)
+	assert.that(formacion1.esCompleja())
+}
+
+test "Deposito1 necesita un conductor experimentado por tener a la formacion1 con exceso de peso"{
+	vagonCarga1.cargaMaxima(15000)
+	formacion1.agregarLocomotora(locomotora1)
+	formacion1.agregarVagonCarga(vagonCarga1)
+	deposito1.agregarFormacion(formacion1)
+	assert.that(deposito1.necesitoConductorExperimentado())
+}
+
+test "En deposito1 la formacion1 no puede moverse" {
+	vagonCarga3.cargaMaxima(17521)
+	formacion1.agregarLocomotora(locomotora1)
+	formacion1.agregarLocomotora(locomotora2)
+	formacion1.agregarVagonCarga(vagonCarga1)
+	formacion1.agregarVagonCarga(vagonCarga2)
+	formacion1.agregarVagonCarga(vagonCarga3)
+	deposito1.agregarFormacion(formacion1)
+	assert.equals(formacion1 == deposito1.formacionesQueNoPuedenMoverse())
+}
+
+test "En deposito1 agregar locomotora1 a la formacion1 para que puede moverse" {
+	vagonCarga3.cargaMaxima(17521)
+	formacion1.agregarLocomotora(locomotora1)
+	formacion1.agregarLocomotora(locomotora2)
+	formacion1.agregarVagonCarga(vagonCarga1)
+	formacion1.agregarVagonCarga(vagonCarga2)
+	formacion1.agregarVagonCarga(vagonCarga3)
+	deposito1.agregarFormacion(formacion1)
+	var locomotora3 = new Locomotora()
+	deposito1.agregarLocomotoraSuelta(locomotora3)
+	deposito1.agregarLocomotorasParaMoverFormacion()
+	assert.equals([locomotora1, locomotora2, locomotora3], formacion1.locomotoras())
+}
 }

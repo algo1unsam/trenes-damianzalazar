@@ -33,7 +33,7 @@ class Formacion {
 	
 	method eficiente() = 
 		locomotoras.all { locomotora => locomotora.arrastre() >= locomotora.peso() * 5 }
-
+	
 	method puedeMoverse() =
 		locomotoras.sum { locomotora => locomotora.arrastreUtil() } >=
 		vagones.sum { vagon => vagon.peso() }
@@ -45,7 +45,15 @@ class Formacion {
 	}
 
 	method vagonMasPesado() {
-		//return vagonesCarga.max { vagon => vagon.peso() }
 		return vagones.max { vagon => vagon.peso() }
 	}
+	
+	method cantVagonesYlocomotoras() = locomotoras.size() + vagones.size()
+	
+	method pesoVagonesYlocomotoras() { 
+		return locomotoras.sum { locomotora => locomotora.peso() } + 
+			   vagones.sum { vagon => vagon.peso() }
+	}
+	
+	method esCompleja() = self.cantVagonesYlocomotoras() > 20 || self.pesoVagonesYlocomotoras() > 10000
 }
