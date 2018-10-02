@@ -180,7 +180,6 @@ test "En deposito1 se agrega locomotora1 a la formacion1 para que pueda moverse"
 	deposito1.agregarLocomotorasParaMoverFormacion()
 	assert.equals([locomotora1, locomotora2, locomotora3], formacion1.locomotoras())
 }
-
 test "En deposito1 no se agrega locomotora a la formacion1 porque puede moverse" {
 	formacion1.agregarLocomotora(locomotora1)
 	formacion1.agregarLocomotora(locomotora2)

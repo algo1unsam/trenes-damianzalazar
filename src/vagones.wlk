@@ -8,6 +8,7 @@ class VagonCarga {
 }
 
 class VagonPasajero {
+	
 	var property ancho = 2.5
 	var property largo = 10
 	const pesoXpasajero = 80

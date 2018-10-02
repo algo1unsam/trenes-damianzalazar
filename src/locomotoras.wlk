@@ -7,5 +7,4 @@ class Locomotora{
 	method arrastre() = 12000
 	method velocidad() = 80
 	method arrastreUtil() = self.arrastre() - self.peso()
-	
 }

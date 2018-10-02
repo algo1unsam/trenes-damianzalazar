@@ -5,7 +5,6 @@ import vagones.*
 class Deposito {
 	var property formaciones = []
 	var property locomotoras = []
-	
 	method agregarFormacion(formacion) { formaciones.add(formacion) }
 	method agregarLocomotoraSuelta(locomotora) { locomotoras.add(locomotora) }
 	

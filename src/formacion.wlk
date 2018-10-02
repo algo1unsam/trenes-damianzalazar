@@ -3,6 +3,7 @@ import locomotoras.*
 import vagones.*
 
 class Formacion {
+	
 	var property locomotoras = []
 	var property vagones = []
 	var property vagonesCarga = []
