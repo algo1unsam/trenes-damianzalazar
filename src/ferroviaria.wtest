@@ -156,17 +156,6 @@ test "Deposito1 necesita un conductor experimentado por tener a la formacion1 co
 	assert.that(deposito1.necesitoConductorExperimentado())
 }
 
-test "En deposito1 la formacion1 no puede moverse" {
-	vagonCarga3.cargaMaxima(17521)
-	formacion1.agregarLocomotora(locomotora1)
-	formacion1.agregarLocomotora(locomotora2)
-	formacion1.agregarVagonCarga(vagonCarga1)
-	formacion1.agregarVagonCarga(vagonCarga2)
-	formacion1.agregarVagonCarga(vagonCarga3)
-	deposito1.agregarFormacion(formacion1)
-	assert.equals(formacion1 == deposito1.formacionesQueNoPuedenMoverse())
-}
-
 test "En deposito1 agregar locomotora1 a la formacion1 para que puede moverse" {
 	vagonCarga3.cargaMaxima(17521)
 	formacion1.agregarLocomotora(locomotora1)
