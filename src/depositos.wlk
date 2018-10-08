@@ -19,14 +19,24 @@ class Deposito {
 		formaciones.all { formacion => formacion.puedenMoverse() }
 	}
 	
-	method agregarLocomotorasParaMoverFormacion() {
+	method agregarLocomotoraParaMoverFormacion(formacion) {
 		locomotoras.forEach { 
-		locomotora =>
-			formaciones.forEach { 
-			formacion =>  if ( locomotora.arrastreUtil() >=  formacion.empujeParaMoverse() ) 
-						  formacion.agregarLocomotora(locomotora)	
-			}
+		locomotora => 	if ( !formacion.puedeMoverse() )
+						if ( locomotora.arrastreUtil() >=  formacion.empujeParaMoverse() )
+					       formacion.agregarLocomotora(locomotora)
 		}
 	}
+
+// RECORDAR. Con esto comparo dos colecciones
+//	method agregarLocomotorasParaMoverFormacion() {
+//		locomotoras.forEach { 
+//		locomotora =>
+//			formaciones.forEach { 
+//			formacion =>  if ( !formacion.puedeMoverse() )
+//						  if ( locomotora.arrastreUtil() >=  formacion.empujeParaMoverse() ) 
+//						  formacion.agregarLocomotora(locomotora)	
+//			}
+//		}
+//	}
 	
 }

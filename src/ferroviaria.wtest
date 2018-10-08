@@ -166,7 +166,17 @@ test "En deposito1 agregar locomotora1 a la formacion1 para que puede moverse" {
 	deposito1.agregarFormacion(formacion1)
 	var locomotora3 = new Locomotora()
 	deposito1.agregarLocomotoraSuelta(locomotora3)
-	deposito1.agregarLocomotorasParaMoverFormacion()
+	deposito1.agregarLocomotoraParaMoverFormacion(formacion1)
 	assert.equals([locomotora1, locomotora2, locomotora3], formacion1.locomotoras())
+}
+
+test "En formacion1 larga distancia se cumple con la cantidad de banios necesarias" {
+	var largaDistancia = new FormacionLargaDistancia()
+	largaDistancia.agregarLocomotora(locomotora1)
+	largaDistancia.agregarLocomotora(locomotora2)
+	vagonPasajeros1.cantBanios(2)
+	largaDistancia.agregarVagonPasajeros(vagonPasajeros1)
+	assert.that(largaDistancia.cumpleConBaniosNecesarios())
+	assert.that(largaDistancia.bienArmada())
 }
 }

@@ -57,3 +57,18 @@ class Formacion {
 	
 	method esCompleja() = self.cantVagonesYlocomotoras() > 20 || self.pesoVagonesYlocomotoras() > 10000
 }
+
+class FormacionCortaDistancia inherits Formacion {
+	method bienArmada(formacion) = self.puedeMoverse() && !self.esCompleja()
+	
+}
+class FormacionLargaDistancia inherits Formacion {
+	method bienArmada() = self.puedeMoverse() &&  self.cumpleConBaniosNecesarios()
+	
+	method cumpleConBaniosNecesarios() = self.baniosDisponibles() >= self.baniosNecesarios()
+	
+	method baniosDisponibles() = vagonesPasajeros.sum { vagon => vagon.cantBanios() }
+	
+	method baniosNecesarios() = self.limitePasajeros() / 50	
+	
+}
