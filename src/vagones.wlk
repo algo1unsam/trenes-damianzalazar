@@ -2,8 +2,6 @@ import depositos.*
 import formacion.*
 import locomotoras.*
 
-//CREAR VAGONES Y QUE VAGONCARGA Y VAGONPASAJEROS SEAN HERENCIAS
-
 class VagonCarga { 
 	var property cargaMaxima = 2000
 	method peso() = cargaMaxima + 160

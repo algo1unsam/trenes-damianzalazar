@@ -9,3 +9,7 @@ class Locomotora{
 	method arrastreUtil() = self.arrastre() - self.peso()
 	
 }
+
+class Ciudad {
+	var property esGrande = false
+}

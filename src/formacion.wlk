@@ -28,8 +28,14 @@ class Formacion {
 		return vagones.filter {vagon => self.vagonLiviano(vagon) }.size()	   
 	}
 
-	method velocidadMaxima() = 
+	method velocidadMaximaLocomotora() = 
 		locomotoras.min{ locomotora => locomotora.velocidad() }.velocidad()
+	
+	method velocidadMaximaLegal()
+	
+	method velocidadMaxima() {
+		return self.velocidadMaximaLocomotora().min(self.velocidadMaximaLegal())
+	}
 	
 	method eficiente() = 
 		locomotoras.all { locomotora => locomotora.arrastre() >= locomotora.peso() * 5 }
@@ -59,16 +65,39 @@ class Formacion {
 }
 
 class FormacionCortaDistancia inherits Formacion {
+	
 	method bienArmada(formacion) = self.puedeMoverse() && !self.esCompleja()
+	
+	override method velocidadMaximaLegal() = 60
 	
 }
 class FormacionLargaDistancia inherits Formacion {
+	var property origen = null
+	var property destino = null
+	
 	method bienArmada() = self.puedeMoverse() &&  self.cumpleConBaniosNecesarios()
 	
 	method cumpleConBaniosNecesarios() = self.baniosDisponibles() >= self.baniosNecesarios()
 	
 	method baniosDisponibles() = vagonesPasajeros.sum { vagon => vagon.cantBanios() }
 	
-	method baniosNecesarios() = self.limitePasajeros() / 50	
+	method baniosNecesarios() = self.limitePasajeros() / 50
+	
+	override method velocidadMaximaLegal() = if( origen.esGrande() and destino.esGrande() ) 200 else 150
+
+}
+
+class FormacionAltaVelocidad inherits FormacionLargaDistancia {
+	
+	method velocidadPermitida() = self.velocidadMaxima() >= 250
+	
+		override method velocidadMaximaLegal() {
+		return 400
+	} 
+	
+	method vagonesSonLivianos() = vagones.all { vagon => self.vagonLiviano(vagon) }
+	
+	override method bienArmada() = self.velocidadPermitida() and self.vagonesSonLivianos()
+	
 	
 }
