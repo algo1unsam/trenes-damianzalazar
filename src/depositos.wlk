@@ -25,18 +25,5 @@ class Deposito {
 						if ( locomotora.arrastreUtil() >=  formacion.empujeParaMoverse() )
 					       formacion.agregarLocomotora(locomotora)
 		}
-	}
-
-// RECORDAR. Con esto comparo dos colecciones
-//	method agregarLocomotorasParaMoverFormacion() {
-//		locomotoras.forEach { 
-//		locomotora =>
-//			formaciones.forEach { 
-//			formacion =>  if ( !formacion.puedeMoverse() )
-//						  if ( locomotora.arrastreUtil() >=  formacion.empujeParaMoverse() ) 
-//						  formacion.agregarLocomotora(locomotora)	
-//			}
-//		}
-//	}
-	
+	}	
 }

@@ -12,9 +12,9 @@ describe "Test Administradora Ferroviaria"{
 	var vagonPasajeros1 = new VagonPasajero()
 	var vagonPasajeros2 = new VagonPasajero()
 	var vagonPasajeros3 = new VagonPasajero()
-	var formacion1 = new FormacionLargaDistancia()//new Formacion()
-	var formacion2 = new FormacionLargaDistancia()//new Formacion()
-	var formacion3 = new FormacionLargaDistancia()//new Formacion()
+	var formacion1 = new FormacionCortaDistancia()
+	var formacion2 = new FormacionLargaDistancia()
+	var formacion3 = new FormacionAltaVelocidad()
 	var deposito1 = new Deposito()
 
 test "Formacion1 puede transportar 0 pasajeros" {
@@ -170,39 +170,40 @@ test "En deposito1 agregar locomotora1 a la formacion1 para que puede moverse" {
 	assert.equals([locomotora1, locomotora2, locomotora3], formacion1.locomotoras())
 }
 
-test "En formacion1 larga distancia se cumple con la cantidad de banios necesarias" {
-	var largaDistancia = new FormacionLargaDistancia()
-	largaDistancia.agregarLocomotora(locomotora1)
-	largaDistancia.agregarLocomotora(locomotora2)
+test "En formacion2 de larga distancia se cumple con la cantidad de banios necesarias" {
+	formacion2.agregarLocomotora(locomotora1)
+	formacion2.agregarLocomotora(locomotora2)
 	vagonPasajeros1.cantBanios(2)
-	largaDistancia.agregarVagonPasajeros(vagonPasajeros1)
-	assert.that(largaDistancia.cumpleConBaniosNecesarios())
-	assert.that(largaDistancia.bienArmada())
+	formacion2.agregarVagonPasajeros(vagonPasajeros1)
+	assert.that(formacion2.cumpleConBaniosNecesarios())
+	assert.that(formacion2.bienArmada())
 }
 
-test "En formacion cortaDistancia la velocidad maxima es 60"{
-	var cortaDistancia = new FormacionCortaDistancia()
-	cortaDistancia.agregarLocomotora(locomotora1)
-	assert.equals(60,cortaDistancia.velocidadMaxima())
+test "En formacion1 de corta distancia la velocidad maxima es 60"{
+	formacion1.agregarLocomotora(locomotora1)
+	assert.equals(60,formacion1.velocidadMaxima())
 }
 
-test "En formacion largaDistancia la velocidad maxima es 200"{
-	var largaDistancia = new FormacionLargaDistancia()
+test "En formacion2 de larga distancia la velocidad maxima es 200"{
 	var buenosAires = new Ciudad(esGrande = true)
 	var chascomus = new Ciudad(esGrande = true)
-	largaDistancia.origen(buenosAires)
-	largaDistancia.destino(chascomus)
+	formacion2.origen(buenosAires)
+	formacion2.destino(chascomus)
 	locomotora1.velocidad(250)
-	largaDistancia.agregarLocomotora(locomotora1)
-	assert.equals(200,largaDistancia.velocidadMaxima())
+	formacion2.agregarLocomotora(locomotora1)
+	assert.equals(200,formacion2.velocidadMaxima())
 }
 
-test "Formacion altaVelocidad esta bien armado"{
-	var altaVelocidad = new FormacionAltaVelocidad()
+test "Formacion3 de alta velocidad esta bien armado"{
 	locomotora1.velocidad(400)
-	altaVelocidad.agregarLocomotora(locomotora1)
-	altaVelocidad.agregarVagonCarga(vagonCarga1)
+	formacion3.agregarLocomotora(locomotora1)
+	formacion3.agregarVagonCarga(vagonCarga1)
 	assert.equals(400, locomotora1.velocidad())
-	//assert.that(altaVelocidad.bienArmado())
+	assert.that(formacion3.velocidadPermitida())
+	assert.that(formacion3.vagonesSonLivianos())
+	assert.that(formacion3.puedeMoverse())
+	assert.that(formacion3.cumpleConBaniosNecesarios())
+	assert.that(formacion3.bienArmada())
 }
+
 }

@@ -24,8 +24,7 @@ class Formacion {
 	
 	method vagonLiviano(vagon) = vagon.peso() < 2500
 
-	method cantVagonesLivianos() {
-		//return vagones.filter {vagon => self.vagonLiviano(vagon) }.size()	   
+	method cantVagonesLivianos() {   
 		return vagones.count {vagon => self.vagonLiviano(vagon)}
 	}
 
@@ -80,6 +79,7 @@ class FormacionLargaDistancia inherits Formacion {
 	
 	method cumpleConBaniosNecesarios() = self.baniosDisponibles() >= self.baniosNecesarios()
 	
+	//Si no hay vagones de pasajeros devuelve CERO y si existen vagones de carga no influye porque no tienen baños
 	method baniosDisponibles() = vagonesPasajeros.sum { vagon => vagon.cantBanios() }
 	
 	method baniosNecesarios() = self.limitePasajeros() / 50
@@ -92,9 +92,7 @@ class FormacionAltaVelocidad inherits FormacionLargaDistancia {
 	
 	method velocidadPermitida() = self.velocidadMaxima() >= 250
 	
-	override method velocidadMaximaLegal() {
-		return 400
-	} 
+	override  method velocidadMaximaLegal() = 400 
 	
 	method vagonesSonLivianos() = vagones.all { vagon => self.vagonLiviano(vagon) }
 	
